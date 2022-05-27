@@ -1,0 +1,26 @@
+name: run-action
+
+on:
+  workflow_dispatch:
+  # rebuild any PRs and main branch changes
+  pull_request:
+    branches: [$default-branch, main]
+  push:
+    branches:
+      - $default-branch
+      - main
+      - 'releases/*'
+
+jobs:
+  test: # make sure the action works on a clean machine with(out) building
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: run-action
+        uses: ./
+        id: run_action
+        with:
+          name: world
+
+      - name: log-action-output
+        run: echo ${{steps.run_action.outputs.gh_output}}

@@ -1,0 +1,21 @@
+# @todo: sync with other repositories
+
+name: governance-bot
+
+on:
+  pull_request_target:
+    branches: [$default-branch]
+    types: [synchronize, opened, labeled, unlabeled]
+  issues:
+    types: [opened, labeled, unlabeled]
+  issue_comment:
+    types: [created]
+
+jobs:
+  main:
+    name: governance
+    runs-on: ubuntu-latest
+    steps:
+      - uses: DeFiCh/oss-governance-bot@v2.0.6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,19 @@
+name: readable-readme
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - $default-branch
+      - main
+
+jobs:
+  runit: # make sure the action works on a clean machine with(out) building
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Readable Readme
+        uses: tianhaoz95/readable-readme@v1.0.4-beta
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

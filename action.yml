@@ -1,0 +1,20 @@
+name: 'Github Action <TODO_NAME> Template'
+description: 'TODO: description'
+author: ivankatliarchuk <https://github.com/ivankatliarchuk>
+
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
+branding:
+  color: "purple"
+  icon: "user"
+
+inputs:
+  name:
+    description: 'input description here'
+    default: 'hello typescript'
+    required: true
+
+outputs:
+  gh_output:
+    description: 'The generated github action output'

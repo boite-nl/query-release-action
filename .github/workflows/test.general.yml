@@ -1,0 +1,26 @@
+name: test.general
+
+on:
+  workflow_dispatch:
+
+jobs:
+  show:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3.0.0
+
+      - name: calculate date
+        id: envs
+        run: echo "::set-output name=CURRENT_DATE::$(date -u +'%Y-%m-%dT%H-%M')"
+
+      - name: check on different stuff
+        run: |
+          echo "${{steps.envs.outputs.current_date}}"
+          echo "${{ github.action_path }}"
+          echo "all env"
+          env
+
+      - name: show github vars
+        run: |
+          echo " ${{ toJson(github) }}"

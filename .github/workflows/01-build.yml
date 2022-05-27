@@ -1,0 +1,45 @@
+name: build-test-run
+
+on:
+  workflow_dispatch:
+  # rebuild any PRs and main branch changes
+  pull_request:
+    branches: [$default-branch, main]
+    paths-ignore:
+      - 'README.md'
+      - 'docs/**'
+  push:
+    branches:
+      - $default-branch
+      - main
+      - 'releases/*'
+    paths-ignore:
+      - 'README.md'
+      - 'docs/**'
+
+jobs:
+  build: # make sure we can build action
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/cache@v3.0.2
+        with:
+          path: |
+            ~/.npm
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - run: npm install
+      - run: 'npm run test:coverage'
+      - run: npm run pack
+      - name: run-action
+        uses: ./
+        id: run_action
+        with:
+          name: world
+
+      - name: log-action-output
+        run: echo ${{steps.run_action.outputs.gh_output}}

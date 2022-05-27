@@ -1,0 +1,42 @@
+name: pull-request-branch-labels
+# todo: should only run if branch not named as it should
+on:
+  pull_request:
+    types: [opened, assigned, ready_for_review]
+
+jobs:
+  pr-labeler:
+    name: pull request labels
+    runs-on: ubuntu-latest
+    if: >
+      github.actor != 'dependabot[bot]' || github.actor != 'dependabot-preview[bot]' ||
+        github.actor != 'dependabot[bot]' || github.actor != 'renovate[bot]' ||
+        github.actor != 'renovate-bot'
+    steps:
+
+      - name: identify actor & creator
+        run: |
+          echo "actor: ${{ github.actor }}"
+          echo "creator: ${{ github.event.pull_request.user.login }}"
+
+      - name: validate branch name
+        uses: AlbertHernandez/branch-name-action@v1.0.2
+        with:
+          branch_pattern: 'feature|fix|bug|chore|hotfix|docs|dependencies|deps'
+          ignore_branch_pattern: 'master|main|renovate'
+          comment_for_invalid_branch_name: |
+            **Pro Tip!**
+            You can help us label your Pull Requests by using the following branch naming convention next time you create a pull request.
+            Branch naming convention | Label
+            ------------------------ | ------
+            `feature/**`             | kind/feature
+            `fix/**`                  | kind/fix
+            `chore/**`               | kind/chore
+            `stable/**`              | kind/stable
+            `docs/**`                | kind/docs
+            `dependencies/**`        | kind/dependencies
+            <hr>
+            If your changes do not fall into any of these categories, don't worry.
+            You can just ignore this message in that case! 👀
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

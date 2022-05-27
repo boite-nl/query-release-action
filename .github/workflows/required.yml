@@ -1,0 +1,21 @@
+---
+name: required-status-check
+
+on:
+  workflow_dispatch:
+  pull_request_review: { types: submitted }
+  pull_request_target:
+    branches: [$default-branch]
+    types: [ready_for_review, labeled, unlabeled]
+  check_suite:
+    types:
+      - completed
+
+jobs:
+  show:
+    runs-on: ubuntu-latest
+    if: github.event.review.state == 'approved' || !github.event.review
+    steps:
+
+      - name: just a dummy job to protect branch
+        run: echo "This status check is required"

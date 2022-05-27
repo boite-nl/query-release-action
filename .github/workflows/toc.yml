@@ -1,0 +1,28 @@
+---
+name: toc generator
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - README.md
+  pull_request:
+    branches:
+      - main
+    paths:
+      - README.md
+
+# https://github.com/technote-space/toc-generator#condition2
+jobs:
+  generateTOC:
+    name: toc generator
+    runs-on: ubuntu-latest
+    steps:
+      - uses: technote-space/toc-generator@v4.1.6
+        with:
+          TARGET_PATHS: "README.md"
+          INCLUDE_LABELS: documentation
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CREATE_PR: true
+          CHECK_ONLY_DEFAULT_BRANCH: true
