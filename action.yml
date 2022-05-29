@@ -1,19 +1,27 @@
-name: 'Github Action <TODO_NAME> Template'
-description: 'TODO: description'
-author: ivankatliarchuk <https://github.com/ivankatliarchuk>
+name: 'Query Github Releases'
+description: 'Query Github Releases'
+author: Boite Witte <info@boite.nl>
 
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'
 branding:
   color: "purple"
   icon: "user"
 
 inputs:
-  name:
-    description: 'input description here'
-    default: 'hello typescript'
+  latest:
+    description: Get Only latest (time) Release
     required: true
+    default: true
+  prerelease:
+    description: Get Prerelease
+    required: true
+    default: true
+  draft:
+    description: Get Draft Release
+    required: true
+    default: true
 
 outputs:
   gh_output:
