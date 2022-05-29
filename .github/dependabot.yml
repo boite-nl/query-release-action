@@ -8,14 +8,11 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
-    labels:
-      - ":game_die: dependencies"
-      - ":robot: bot"
     commit-message:
       prefix: chore
       include: "scope"
     reviewers:
-      - ivankatliarchuk
+      - boitewitte
 
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -24,21 +21,15 @@ updates:
     commit-message:
       prefix: chore
       include: "scope"
-    labels:
-      - ":game_die: dependencies"
-      - ":robot: bot"
     reviewers:
-      - ivankatliarchuk
+      - boitewitte
 
   - package-ecosystem: "gitsubmodule"
     directory: "/"
     schedule:
       interval: weekly
-    labels:
-      - ":game_die: dependencies"
-      - ":robot: bot"
     reviewers:
-      - ivankatliarchuk
+      - boitewitte
     commit-message:
       prefix: chore
       include: "scope"
@@ -50,11 +41,8 @@ updates:
     commit-message:
       prefix: chore
       include: "scope"
-    labels:
-      - ":game_die: dependencies"
-      - ":robot: bot"
     reviewers:
-      - ivankatliarchuk
+      - boitewitte
 
   - package-ecosystem: "docker"
     directory: "/"
@@ -63,11 +51,8 @@ updates:
     commit-message:
       prefix: chore
       include: "scope"
-    labels:
-      - ":game_die: dependencies"
-      - ":robot: bot"
     reviewers:
-      - ivankatliarchuk
+      - boitewitte
 
   - package-ecosystem: "npm"
     directory: "/"
@@ -76,8 +61,5 @@ updates:
     commit-message:
       prefix: chore
       include: "scope"
-    labels:
-      - ":game_die: dependencies"
-      - ":robot: bot"
     reviewers:
-      - ivankatliarchuk
+      - boitewitte
