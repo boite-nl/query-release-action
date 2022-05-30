@@ -16,7 +16,7 @@
     "@typescript-eslint/eslint-plugin": "4.29.1",
     "@typescript-eslint/parser": "4.29.2",
     "@vercel/ncc": "0.33.3",
-    "chai": "4.3.4",
+    "chai": "4.3.6",
     "eslint": "8.15.0",
     "eslint-config-google": "0.14.0",
     "filewtf": "1.0.0",
