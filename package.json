@@ -17,7 +17,7 @@
     "@typescript-eslint/parser": "4.29.2",
     "@vercel/ncc": "0.33.3",
     "chai": "4.3.4",
-    "eslint": "8.15.0",
+    "eslint": "8.16.0",
     "eslint-config-google": "0.14.0",
     "filewtf": "1.0.0",
     "git-branch-is": "4.0.0",
