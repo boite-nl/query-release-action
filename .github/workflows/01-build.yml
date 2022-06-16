@@ -33,13 +33,13 @@ jobs:
             ${{ runner.os }}-node-
 
       - run: npm install
-      - run: 'npm run test:coverage'
+      - run: npm run build
       - run: npm run pack
       - name: run-action
         uses: ./
         id: run_action
         with:
-          name: world
+          draft: true
 
       - name: log-action-output
         run: echo ${{steps.run_action.outputs.gh_output}}
