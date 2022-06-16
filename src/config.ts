@@ -3,7 +3,7 @@ import * as core from '@actions/core'
 
 import {asGitHubRef, asRepoWithoutOwner} from './utils'
 
-const githubEvents = ['workflow_dispatch']
+// const githubEvents = ['workflow_dispatch']
 
 const env = from(process.env, {
   asRepoWithoutOwner,
@@ -40,7 +40,7 @@ const config: Config = {
     .get('GITHUB_SERVER_URL')
     .default('https://github.com')
     .asString(),
-  event: env.get('GITHUB_EVENT_NAME').required().asEnum(githubEvents),
+  event: env.get('GITHUB_EVENT_NAME').required().asString(),
   token: env
     .get('GITHUB_TOKEN')
     .required()

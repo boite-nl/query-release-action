@@ -20,17 +20,17 @@ type InputTransform = {
 function toSelectTypes(value: string): SelectRelease | false {
   const cleanupValue = value.toLowerCase().trim()
 
-  return availableSelectionMethods.indexOf(cleanupValue) === -1
-    ? false
-    : (cleanupValue as SelectRelease)
+  return availableSelectionMethods.indexOf(cleanupValue) === -1 ?
+    false :
+    (cleanupValue as SelectRelease)
 }
 
 export const transformers: InputTransform = {
   draft: toBoolean,
-  excludeDraft: value =>
+  excludeDraft: (value) =>
     typeof value !== 'undefined' && isFalse(value) ? false : true,
   prerelease: toBoolean,
-  range: value =>
+  range: (value) =>
     (!isEmptyString(value) && !isFalse(value) && value.trim()) || false,
   release: toBoolean,
   select: toSelectTypes,
