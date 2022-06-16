@@ -30,6 +30,7 @@
     "git-branch-is": "4.0.0",
     "husky": "8.0.1",
     "nock": "13.2.4",
+    "nyc": "15.1.0",
     "prettier": "2.6.2",
     "ts-node": "10.8.1",
     "typescript": "4.7.2"
@@ -58,7 +59,8 @@
     "pack": "tsc --noEmit && ncc build src/index.ts --out lib/ --license license",
     "snippits:acceptance": "npx cucumber-js --config cucumber-config/acceptance.js  --dry-run --format-options \"{\\\"snippetInterface\\\": \\\"async-await\\\"}\" --format snippets --publish-quiet",
     "test": "npm run test:acceptance",
-    "test:acceptance": "npx cucumber-js --config cucumber-config/acceptance.js"
+    "test:acceptance": "npx cucumber-js --config cucumber-config/acceptance.js",
+    "test:coverage": "npx nyc npm test"
   },
   "snyk": true,
   "version": "0.0.1"
