@@ -4,7 +4,7 @@ author: Boite Witte <info@boite.nl>
 
 runs:
   using: 'node16'
-  main: 'dist/action.js'
+  main: 'dist/index.js'
 branding:
   color: "green"
   icon: "activity"
@@ -21,7 +21,6 @@ inputs:
     default: false
   exclude-draft:
     description: Exclude Draft Releases
-    default: true
   range:
     description: Get Semver Versions from within a specific Range
 
