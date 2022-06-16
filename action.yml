@@ -4,25 +4,35 @@ author: Boite Witte <info@boite.nl>
 
 runs:
   using: 'node16'
-  main: 'dist/index.js'
+  main: 'dist/action.js'
 branding:
-  color: "purple"
-  icon: "user"
+  color: "green"
+  icon: "activity"
 
 inputs:
-  latest:
-    description: Get Only latest (time) Release
-    required: true
-    default: true
+  select:
+    description: Which release do you want to retrieve? (latest, previous, oldest, max, min, specific release)
+    default: latest
   prerelease:
     description: Get Prerelease
-    required: true
-    default: true
+    default: false
   draft:
     description: Get Draft Release
-    required: true
+    default: false
+  exclude-draft:
+    description: Exclude Draft Releases
     default: true
+  range:
+    description: Get Semver Versions from within a specific Range
 
 outputs:
-  gh_output:
-    description: 'The generated github action output'
+  id:
+    description: The Release ID
+  name:
+    description: The name for the release
+  tag_name:
+    description: The tag name for the release
+  body:
+    description: Description of the Release
+  url:
+    description: The URL of the Release

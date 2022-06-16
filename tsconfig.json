@@ -22,13 +22,15 @@
     "preserveConstEnums": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
   },
   "include": [
-    "**/*.ts"
+    "src/**/*.ts"
   ],
   "exclude": [
     "node_modules",
-    "**/*.test.ts"
+    "step-definitions/**/*.ts"
   ]
 }

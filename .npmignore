@@ -1,0 +1,11 @@
+/dist/
+/__tests__/
+.editorconfig
+.eslint
+.mdlrc
+.pre-commit-config.yaml
+.prettierignore
+.prettierrc.json
+/action.yml
+Makefile
+tsconfig.json
