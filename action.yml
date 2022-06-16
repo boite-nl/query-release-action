@@ -10,6 +10,10 @@ branding:
   icon: "activity"
 
 inputs:
+  token:
+    description: 'Token for the repository. Can be passed in using `{{ secrets.GITHUB_TOKEN }}`.'
+    required: false
+    default: ${{ github.token }}
   select:
     description: Which release do you want to retrieve? (latest, previous, oldest, max, min, specific release)
     default: latest
