@@ -16,18 +16,29 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0
-      - uses: salsify/action-detect-and-tag-new-version@v2
+          fetch-depth: 2
+      - name: Get current release
+        id: current-version
+        run: |
+          echo "::set-output version=$(npm pkg get version)"
+      - uses: ./
+        name: Check if version "${{ steps.current-version.outputs.version }}" is released
         id: check-version
-        continue-on-error: true
         with:
-          create-tag: false
+          exclude-draft: true
+          prerelease: ${{ contains(steps.current-version.outputs.version, '-rc')}}
+          release: ${{ !contains(steps.current-version.outputs.version, '-rc')}}
+          select: ${{ steps.current-version.outputs.version }}
+      - name: Echo outputs
+        run: |
+          echo "Name: ${{ steps.check-version.outputs.name}}"
+          echo "TagName: ${{ steps.check-version.outputs.tag_name}}"
       - name: PR labeling
         uses: srvaroa/labeler@v0.9
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Add Version Label
-        if: steps.check-version.conclusion == 'success' && steps.check-version.outputs.previous-version != steps.check-version.outputs.current-version
-        uses: actions-ecosystem/action-add-labels@v1
-        with:
-          labels: ${{ (contains(steps.check-version.outputs.current-version, '-rc') && 'prerelease') || 'release' }}
+      # - name: Add Version Label
+      #   if: steps.check-version.conclusion == 'success' && steps.check-version.outputs.previous-version != steps.check-version.outputs.current-version
+      #   uses: actions-ecosystem/action-add-labels@v1
+      #   with:
+      #     labels: ${{ (contains(steps.check-version.outputs.current-version, '-rc') && 'prerelease') || 'release' }}

@@ -12,15 +12,23 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 2
-      - uses: salsify/action-detect-and-tag-new-version@v2
-        id: check-version
-        continue-on-error: true
-      - uses: release-drafter/release-drafter@v5.20.0
-        id: release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Get current release
+        id: current-version
+        run: |
+          echo "::set-output version=$(npm pkg get version)"
+      - uses: ./
+        name: Check if version "${{ steps.current-version.outputs.version }}" is released
         with:
-          publish: ${{ steps.check-version.conclusion == 'success' && steps.check-version.outputs.previous-version != steps.check-version.outputs.current-version }}
-          prerelease: ${{ contains(steps.check-version.outputs.current-version, '-rc') }}
-          version: ${{ steps.check-version.outputs.current-version }}
-          tag: ${{ steps.check-version.outputs.tag }}
+          exclude-draft: true
+          prerelease: ${{ contains(steps.current-version.outputs.version, '-rc')}}
+          release: ${{ !contains(steps.current-version.outputs.version, '-rc')}}
+          select: ${{ steps.current-version.outputs.version }}
+      # - uses: release-drafter/release-drafter@v5.20.0
+      #   id: release
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     publish: ${{ steps.check-version.conclusion == 'success' && steps.check-version.outputs.previous-version != steps.check-version.outputs.current-version }}
+      #     prerelease: ${{ contains(steps.check-version.outputs.current-version, '-rc') }}
+      #     version: ${{ steps.check-version.outputs.current-version }}
+      #     tag: ${{ steps.check-version.outputs.tag }}
