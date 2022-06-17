@@ -27,6 +27,7 @@ labels:
     color: "e9223b"
   - name: prerelease
     color: "42834b"
+
   # Description labels
   - name: bug
     color: "db162f"
@@ -61,6 +62,8 @@ labels:
   - label: test
     color: "627b8a"
   - label: build-definition
+    color: "7d94a3"
+  - label: dependencies
     color: "7d94a3"
 
   # PR Size labels (PR)
