@@ -14,19 +14,22 @@ inputs:
     description: 'Token for the repository. Can be passed in using `{{ secrets.GITHUB_TOKEN }}`.'
     required: false
     default: ${{ github.token }}
-  select:
-    description: Which release do you want to retrieve? (latest, previous, oldest, max, min, specific release)
-    default: latest
-  prerelease:
-    description: Get Prerelease
-    default: false
   draft:
     description: Get Draft Release
     default: false
   exclude-draft:
     description: Exclude Draft Releases
+  prerelease:
+    description: Get Prerelease
+    default: false
   range:
     description: Get Semver Versions from within a specific Range
+  release:
+    description: Get Release
+    default: false
+  select:
+    description: Which release do you want to retrieve? (latest, previous, oldest, max, min, specific release)
+    default: latest
 
 outputs:
   id:
