@@ -1,37 +1,84 @@
-# Blueprint Github Action
+# Query Github Releases Action
 
-[![build-test-run][build-test-run.badge]][build-test-run.file]
-[![run-action][run-action.badge]][run-action.file]
+<!-- action-docs-description -->
+### Description
 
-[![pre-commit][pre-commit.badge]][pre-commit.url]
-[![code style: prettier][code-style.badge]][code-style.url]
+Query Github Releases
 
-- [Blueprint Github Action](#blueprint-github-action)
+
+<!-- action-docs-description -->
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
+<!-- END doctoc -->
 
-- [⭐ Features](#-features)
+- [Action](#action)
+  - [Inputs](#inputs)
+  - [Environment Variables](#environment-variables)
+- [](#)
+  - [Outputs](#outputs)
+  - [Runs](#runs)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## ⭐ Features
+- [Query Github Releases Action](#query-github-releases-action)
+    - [Description](#description)
+  - [Action](#action)
+    - [Inputs](#inputs)
+    - [Environment Variables](#environment-variables)
+  - [](#)
+    - [Outputs](#outputs)
+    - [Runs](#runs)
 
-- Write source in TypeScript
-- Auto-publish compiled code to `dist/`
-- Semantic Release to GitHub and npm
-- Includes Actions Core and Octokit
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-[**Create a repository using this template →**][template.generate]
+- [Inputs](#inputs)
+- [Outputs](#outputs)
+- [Runs](#runs)
 
-<!-- resources -->
-[build-test-run.badge]: https://github.com/accelerator-blueprints/blueprint-github-action-typescipt/actions/workflows/01-build.yml/badge.svg
-[build-test-run.file]: https://github.com/accelerator-blueprints/blueprint-github-action-typescipt/actions/workflows/01-build.yml
-[run-action.badge]: https://github.com/accelerator-blueprints/blueprint-github-action-typescipt/actions/workflows/02-test.yml/badge.svg
-[run-action.file]: https://github.com/accelerator-blueprints/blueprint-github-action-typescipt/actions/workflows/02-test.yml
-[template.generate]: https://github.com/accelerator-blueprints/blueprint-github-action-typescipt/generate
-[pre-commit.badge]: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
-[pre-commit.url]: https://github.com/pre-commit/pre-commit
-[code-style.badge]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
-[code-style.url]: https://github.com/prettier/prettier
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Action
+
+<!-- action-docs-inputs -->
+### Inputs
+
+| parameter | description | required | default |
+| - | - | - | - |
+| token | Token for the repository. Can be passed in using `{{ secrets.GITHUB_TOKEN }}`. | `false` | ${{ github.token }} |
+| select | Which release do you want to retrieve? (latest, previous, oldest, max, min, specific release) | `false` | latest |
+| prerelease | Get Prerelease | `false` | false |
+| draft | Get Draft Release | `false` | false |
+| exclude-draft | Exclude Draft Releases | `false` |  |
+| range | Get Semver Versions from within a specific Range | `false` |  |
+
+
+
+<!-- action-docs-inputs -->
+
+### Environment Variables
+
+## 
+
+<!-- action-docs-outputs -->
+### Outputs
+
+| parameter | description |
+| - | - |
+| id | The Release ID |
+| name | The name for the release |
+| tag_name | The tag name for the release |
+| body | Description of the Release |
+| url | The URL of the Release |
+
+
+
+<!-- action-docs-outputs -->
+
+<!-- action-docs-runs -->
+### Runs
+
+This action is a `node16` action.
+
+
+<!-- action-docs-runs -->
