@@ -25,6 +25,8 @@
     "@typescript-eslint/eslint-plugin": "5.26.0",
     "@typescript-eslint/parser": "5.26.0",
     "@vercel/ncc": "0.34.0",
+    "action-docs": "1.0.4",
+    "doctoc": "2.2.0",
     "eslint": "8.16.0",
     "eslint-config-google": "0.14.0",
     "filewtf": "1.0.0",
@@ -62,7 +64,9 @@
     "snippits:acceptance": "npx cucumber-js --config cucumber-config/acceptance.js  --dry-run --format-options \"{\\\"snippetInterface\\\": \\\"async-await\\\"}\" --format snippets --publish-quiet",
     "test": "npm run test:acceptance",
     "test:acceptance": "npx cucumber-js --config cucumber-config/acceptance.js",
-    "test:coverage": "npx nyc npm test"
+    "test:coverage": "npx nyc npm test",
+    "preversion": "npm test && rm -rf ./dist/* && touch ./dist/.gitkeep",
+    "version": "npm run build && action-docs --toc-level 3 --update-readme --no-banner && doctoc README.md && git add -A dist README.md"
   },
   "snyk": true,
   "version": "0.0.1"
