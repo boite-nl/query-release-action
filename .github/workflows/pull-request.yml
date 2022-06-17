@@ -19,6 +19,7 @@ jobs:
           fetch-depth: 2
       - uses: salsify/action-detect-and-tag-new-version@v2
         id: check-version
+        continue-on-error: true
         with:
           create-tag: false
       - name: PR labeling
