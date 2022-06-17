@@ -1,5 +1,8 @@
 {
   "extends": "@istanbuljs/nyc-config-typescript",
+  "exclude-after-remap": false,
   "all": true,
-  "exclude": "step-definitions/**/*.ts"
+  "include": [
+    "src/**/*.ts"
+  ]
 }
