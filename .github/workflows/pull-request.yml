@@ -27,7 +27,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Add Version Label
-        if: steps.check-version.outputs.previous-version != steps.check-version.outputs.current-version
+        if: steps.check-version.conclusion == 'success' && steps.check-version.outputs.previous-version != steps.check-version.outputs.current-version
         uses: actions-ecosystem/action-add-labels@v1
         with:
-          labels: ${{ (contains(steps.check-version.outputs.current-version, '-rc') && 'prerelease') || 'version' }}
+          labels: ${{ (contains(steps.check-version.outputs.current-version, '-rc') && 'prerelease') || 'release' }}
