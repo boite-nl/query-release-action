@@ -1,0 +1,61 @@
+version: 1
+labels:
+  # description labels
+  - label: "enhancement"
+    branch: "^feature/.*"
+  - label: "enhancement"
+    branch: "^enhancement/.*"
+  - label: "bug"
+    branch: "^fix/.*"
+  - label: "bug"
+    branch: "^bug/.*"
+  - label: "maintenance"
+    branch: "^chore/.*"
+  - label: "maintenance"
+    branch: "^task/.*"
+  - label: "maintenance"
+    branch: "^documentation/.*"
+  - label: "maintenance"
+    branch: "^cleanup/.*"
+
+  # WIP Label
+  - label: "WIP"
+    mergeable: false
+
+  # Type Labels
+  - label: documentation
+    files:
+      - "*.md"
+      - "docs/*"
+  - label: "build-definition"
+    files:
+      - ".github/*"
+      - "tsconfig.json"
+      - ".editorconfig"
+      - ".eslintrc.json"
+      - ".npmignore"
+      - ".npmrc"
+      - ".prettierignore"
+      - ".prettierrc.json"
+      - "action.yml"
+      - "package*.json"
+      - "tsconfig.json"
+      - "cucumber-config/*"
+  - label: "test"
+    files:
+      - "*.feature"
+      - "step-definitions/*"
+      - "cucumber-config/*"
+
+  - label: "code"
+    files:
+      - "src/*"
+
+  # PR Size Labels
+  - label: "PR-Size: S"
+    size-below: 100
+  - label: "PR-Size: M"
+    size-above: 99
+    size-below: 250
+  - label: "PR-Size: L"
+    size-above: 249
