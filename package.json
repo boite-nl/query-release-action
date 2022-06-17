@@ -55,7 +55,7 @@
     "url": "git+https://github.com/boite-nl/query-release-action.git"
   },
   "scripts": {
-    "build": "tsc --noEmit && ncc build src/action.ts --license license",
+    "build": "tsc --noEmit && ncc build src/action.ts --license license -s",
     "exec": "node dist/index.js",
     "format": "prettier --write **/*.ts",
     "format-check": "prettier --check '**/*.ts'",
