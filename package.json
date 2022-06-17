@@ -55,12 +55,12 @@
     "url": "git+https://github.com/boite-nl/query-release-action.git"
   },
   "scripts": {
-    "build": "tsc --noEmit && ncc build src/action.ts --license license -s",
+    "build": "tsc --noEmit && ncc build src/action.ts --license license -s --no-source-map-register",
     "exec": "node dist/index.js",
     "format": "prettier --write **/*.ts",
     "format-check": "prettier --check '**/*.ts'",
     "lint": "eslint src/**/*.ts",
-    "pack": "tsc --noEmit && ncc build src/index.ts --out lib/ --license license",
+    "pack": "tsc --noEmit && ncc build src/index.ts --out lib/ --license license -s --no-source-map-register",
     "snippits:acceptance": "npx cucumber-js --config cucumber-config/acceptance.js  --dry-run --format-options \"{\\\"snippetInterface\\\": \\\"async-await\\\"}\" --format snippets --publish-quiet",
     "test": "npm run test:acceptance",
     "test:acceptance": "npx cucumber-js --config cucumber-config/acceptance.js",
