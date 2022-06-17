@@ -23,10 +23,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: npm install
-      - name: test
-        run: npm run test:coverage
       - run: npm run build
       - run: npm run pack
+      - name: test
+        run: npm run test:coverage
       - name: run-action
         uses: ./
         id: run_action
