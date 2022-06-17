@@ -4,16 +4,15 @@ _extends: .github
 repository:
   # See https://developer.github.com/v3/repos/#edit for all available settings.
   # name: .github
-  description: ":atom: Blueprint github action typescript."
-  topics: ivank, github, blueprint, accelerator, typescript
-  homepage: https://github.com/workflow-actions/blueprint-github-action-typescipt
+  description: "Github Action to query Github Releases"
+  topics: github, action, query, releases, draft, prerelease
   private: false
   has_issues: true
   has_projects: false
   has_wiki: false
   has_downloads: false
   has_pages: false
-  is_template: true
+  is_template: false
   default_branch: main
   allow_squash_merge: true
   allow_merge_commit: true
@@ -22,5 +21,62 @@ repository:
   enable_automated_security_fixes: true
   enable_vulnerability_alerts: false
 
+labels:
+  # Release Labels (PR)
+  - name: release
+    color: "e9223b"
+  - name: prerelease
+    color: "42834b"
+  # Description labels
+  - name: bug
+    color: "db162f"
+  - name: enhancement
+    color: "0f1ef5"
+  - name: WIP
+    color: "404cf7"
+
+  # Description Labels (issues)
+  - name: Help wanted
+    color: "28502e"
+
+  # Description labels (PR)
+  - name: maintenance
+    color: "8991fa"
+
+  # Priority labels (issues)
+  - name: "prio-critical"
+    color: "950f20"
+  - name: "prio-high"
+    color: "c4142a"
+  - name: "prio-medium"
+    color: "ffc122"
+  - name: "prio-low"
+    color: "ffcf55"
+
+  # Type labels (PR)
+  - label: documentation
+    color: "9badb8"
+  - label: code
+    color: "4d606c"
+  - label: test
+    color: "627b8a"
+  - label: build-definition
+    color: "7d94a3"
+
+  # PR Size labels (PR)
+  - label: "PR-Size: S"
+    color: "ffcf55"
+  - label: "PR-Size: M"
+    color: "ffc122"
+  - label: "PR-Size: L"
+    color: "ed5064"
+
 branches:
 - name: main
+  protection:
+    required_pull_request_reviews:
+      required_approving_review_count: 1
+      require_code_owner_reviews: true
+    required_status_checks:
+    enforce_admins: true
+    restrictions:

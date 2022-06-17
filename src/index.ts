@@ -1,25 +1,31 @@
-import {debug, setFailed, setOutput, info} from '@actions/core'
-import {inspect} from 'util'
+import {Inputs} from './input'
+import {Config} from './config'
 
-import Input from './input'
+import {client, Octokit} from './octo'
+import getReleases, {Release, Releases} from './github/get-releases'
+import filter from './filters'
+import selectRelease from './select-release'
 
-export const run = async () => {
-  const inputs = new Input().inputs
-  info(`Inputs: ${inspect(inputs)}`)
+export type Configuration = Pick<Config, 'repo' | 'owner' | 'token'> &
+  Partial<Pick<Inputs, 'retrieveAllReleases'>>
+export type Query = Partial<Omit<Inputs, 'retrieveAllReleases'>>
 
-  debug(new Date().toTimeString())
-  await execute(10)
-  debug(new Date().toTimeString())
+export async function search(
+  {repo, owner, token, retrieveAllReleases}: Configuration,
+  query: Query
+): Promise<Releases> {
+  const octo: Octokit = client(token)
 
-  setOutput('gh_output', new Date().toTimeString())
+  const releases = await getReleases(octo, {owner, repo}, retrieveAllReleases)
+
+  return filter(releases, query)
 }
 
-export const execute = (milliseconds: number) => {
-  return new Promise<void>((resolve) => setTimeout(() => resolve(), milliseconds))
-}
+export default async function execute(
+  config: Configuration,
+  query: Query
+): Promise<Release | false> {
+  const releases = await search(config, query)
 
-run()
-  .then(() => {})
-  .catch((error) => {
-    setFailed(error.message)
-  })
+  return selectRelease(releases, query.select || 'latest') || false
+}

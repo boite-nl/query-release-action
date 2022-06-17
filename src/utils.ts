@@ -4,9 +4,9 @@ import * as file from 'filewtf'
 
 /**
  * This function parses the GitHub repo owner from the repo name
-  * @param value the GitHub repo name
+ * @param value the GitHub repo name
  */
-export const asRepoWithoutOwner: ExtensionFn<string> = ((value) => {
+export const asRepoWithoutOwner: ExtensionFn<string> = value => {
   if (!validateGitHubRepo(value)) {
     throw new Error(`Repository ${value} is not valid`)
   }
@@ -17,7 +17,7 @@ export const asRepoWithoutOwner: ExtensionFn<string> = ((value) => {
   }
   // return second value
   return split[1]
-})
+}
 
 /**
  * This function validates if a GitHub repo from the environment
@@ -62,9 +62,9 @@ const isBranchRef = (ref: string) => {
  * This function checks if a GiHub reference is
  * referring to a pull request.
  */
-const isPullRequestRef= (ref: string) => {
-  const matcher = new RegExp('^refs/pull/[0-9]+');
-  return matcher.test(ref);
+const isPullRequestRef = (ref: string) => {
+  const matcher = new RegExp('^refs/pull/[0-9]+')
+  return matcher.test(ref)
 }
 
 /**
@@ -72,9 +72,9 @@ const isPullRequestRef= (ref: string) => {
  * a tag.
  * @param ref The GitHub reference to be validated
  */
-const isTagRef = (ref) => {
-  const matcher = new RegExp('^refs/tags/');
-  return matcher.test(ref);
+const isTagRef = ref => {
+  const matcher = new RegExp('^refs/tags/')
+  return matcher.test(ref)
 }
 
 /**
@@ -83,7 +83,7 @@ const isTagRef = (ref) => {
  * @param rootDir the root directory to be walked
  */
 export const listFiles = (rootDir: string) => {
-  return file.walkthrough(rootDir);
+  return file.walkthrough(rootDir)
 }
 
 /**
@@ -91,7 +91,7 @@ export const listFiles = (rootDir: string) => {
  * @param filename the filename of the file to be read
  */
 export const readFileContent = (filename: string) => {
-  return fs.readFileSync(filename, 'utf8');
+  return fs.readFileSync(filename, 'utf8')
 }
 
 /**
@@ -99,6 +99,35 @@ export const readFileContent = (filename: string) => {
  * @param filename the filename that needs to be checked
  */
 export const isYmlFilename = (filename: string) => {
-  const matcher = new RegExp('^.*\.(yml|yaml)$');
-  return matcher.test(filename);
+  const matcher = new RegExp('^.*.(yml|yaml)$')
+  return matcher.test(filename)
+}
+
+export const isEmptyString = (value: string): boolean => {
+  return !value || value.trim().length === 0 || false
+}
+
+export function toBoolean(value: string): boolean {
+  return typeof value === 'string'
+    ? ['true', 'yes', '1'].indexOf(value.toLowerCase().trim()) === -1
+      ? false
+      : true
+    : false
+}
+
+export const isTrue = (value: string | boolean | undefined | null) => {
+  return (
+    (typeof value === 'boolean' && value) ||
+    (typeof value === 'string' && toBoolean(value)) ||
+    false
+  )
+}
+
+export const isFalse = (value: string | boolean | undefined | null) => {
+  return (
+    value === false ||
+    (typeof value === 'string' &&
+      ['false', 'no', '0'].indexOf(value.toLowerCase().trim()) !== -1) ||
+    false
+  )
 }

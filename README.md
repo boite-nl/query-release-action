@@ -1,37 +1,128 @@
-# Blueprint Github Action
+# Query Github Releases Action
 
-[![build-test-run][build-test-run.badge]][build-test-run.file]
-[![run-action][run-action.badge]][run-action.file]
+Github Action to Query Github releases and retrieve information about this release which can be used in other actions.
 
-[![pre-commit][pre-commit.badge]][pre-commit.url]
-[![code style: prettier][code-style.badge]][code-style.url]
-
-- [Blueprint Github Action](#blueprint-github-action)
-
+## Contents
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**
 
-- [⭐ Features](#-features)
+- [Action](#action)
+  - [Inputs](#inputs)
+  - [Environment Variables](#environment-variables)
+  - [Outputs](#outputs)
+  - [Runs](#runs)
+- [Examples](#examples)
+  - [Deploy specific release to environment](#deploy-specific-release-to-environment)
+  - [Rollback action](#rollback-action)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## ⭐ Features
+## Action
+<!-- action-docs-inputs -->
+### Inputs
 
-- Write source in TypeScript
-- Auto-publish compiled code to `dist/`
-- Semantic Release to GitHub and npm
-- Includes Actions Core and Octokit
+| parameter | description | required | default |
+| - | - | - | - |
+| token | Token for the repository. Can be passed in using `{{ secrets.GITHUB_TOKEN }}`. | `false` | ${{ github.token }} |
+| select | Which release do you want to retrieve? (latest, previous, oldest, max, min, specific release) | `false` | latest |
+| prerelease | Get Prerelease | `false` | false |
+| draft | Get Draft Release | `false` | false |
+| exclude-draft | Exclude Draft Releases | `false` |  |
+| range | Get Semver Versions from within a specific Range | `false` |  |
 
-[**Create a repository using this template →**][template.generate]
 
-<!-- resources -->
-[build-test-run.badge]: https://github.com/accelerator-blueprints/blueprint-github-action-typescipt/actions/workflows/01-build.yml/badge.svg
-[build-test-run.file]: https://github.com/accelerator-blueprints/blueprint-github-action-typescipt/actions/workflows/01-build.yml
-[run-action.badge]: https://github.com/accelerator-blueprints/blueprint-github-action-typescipt/actions/workflows/02-test.yml/badge.svg
-[run-action.file]: https://github.com/accelerator-blueprints/blueprint-github-action-typescipt/actions/workflows/02-test.yml
-[template.generate]: https://github.com/accelerator-blueprints/blueprint-github-action-typescipt/generate
-[pre-commit.badge]: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
-[pre-commit.url]: https://github.com/pre-commit/pre-commit
-[code-style.badge]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square
-[code-style.url]: https://github.com/prettier/prettier
+
+<!-- action-docs-inputs -->
+
+### Environment Variables
+
+<!-- action-docs-outputs -->
+### Outputs
+
+| parameter | description |
+| - | - |
+| id | The Release ID |
+| name | The name for the release |
+| tag_name | The tag name for the release |
+| body | Description of the Release |
+| url | The URL of the Release |
+
+
+
+<!-- action-docs-outputs -->
+
+<!-- action-docs-runs -->
+### Runs
+
+This action is a `node16` action.
+
+
+<!-- action-docs-runs -->
+
+## Examples
+
+### Deploy specific release to environment
+```yml
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: The version to release
+        default: previous
+        required: false
+        type: string
+      environment:
+        description: The environment to which to release
+        defualt: production
+        required: false
+        type: string
+
+jobs:
+  deploy-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get Release
+        uses: query-github-release@v1
+        id: get-release
+        with:
+          release: true
+          select: ${{ inputs.version }}
+      - uses: actions/checkout@v3
+        if: steps.get-release.outputs.tag_name
+        with:
+          fetch-depth: 1
+          ref: refs/tags/${{ steps.get-release.outputs.tag_name }}
+      - name: "Deploy to environment: ${{ inputs.environment }}"
+        run: |
+          Deploying ${{ steps.get-release.outputs.tag_name }} to environment: ${{ inputs.environment }}
+```
+
+### Rollback action
+
+```yml
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: The version to rollback to
+        default: previous
+        required: false
+        type: string
+
+jobs:
+  rollback:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get Release to Rollback to
+        uses: query-github-release@v1
+        id: get-release
+        with:
+          release: true
+          select: ${{ inputs.version }}
+      - name: Rollback action
+        if: steps.get-release.outputs.tag_name
+        run: |
+          echo "Rolling back to: ${{ steps.get-release.outputs.tag_name }}"
+```

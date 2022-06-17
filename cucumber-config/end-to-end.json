@@ -1,0 +1,8 @@
+{
+  "requireModule": [
+    "ts-node/register"
+  ],
+  "require": [
+    "step-definitions/**/*.ts"
+  ]
+}
