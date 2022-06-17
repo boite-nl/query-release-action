@@ -20,7 +20,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          publish: ${{ steps.check-version.outputs.previous-version != steps.check-version.outputs.current-version }}
+          publish: ${{ steps.check-version.conclusion == 'success' && steps.check-version.outputs.previous-version != steps.check-version.outputs.current-version }}
           prerelease: ${{ contains(steps.check-version.outputs.current-version, '-rc') }}
           version: ${{ steps.check-version.outputs.current-version }}
           tag: ${{ steps.check-version.outputs.tag }}
