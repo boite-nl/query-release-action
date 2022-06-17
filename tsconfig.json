@@ -24,7 +24,7 @@
     "noUnusedParameters": true,
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
+    "resolveJsonModule": true
   },
   "include": [
     "src/**/*.ts"

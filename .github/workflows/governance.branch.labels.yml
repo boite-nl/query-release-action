@@ -30,7 +30,7 @@ jobs:
             Branch naming convention | Label
             ------------------------ | ------
             `feature/**`             | kind/feature
-            `fix/**`                  | kind/fix
+            `fix/**`                 | kind/fix
             `chore/**`               | kind/chore
             `stable/**`              | kind/stable
             `docs/**`                | kind/docs

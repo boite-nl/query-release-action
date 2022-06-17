@@ -16654,7 +16654,7 @@ run()
     }
     (0, core_1.debug)(new Date().toTimeString());
 })
-    .catch((error) => {
+    .catch(error => {
     (0, core_1.setFailed)(error.message);
     (0, core_1.debug)(new Date().toTimeString());
 });
@@ -16694,7 +16694,6 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const env_var_1 = __nccwpck_require__(9459);
 const core = __importStar(__nccwpck_require__(2186));
 const utils_1 = __nccwpck_require__(1314);
-const githubEvents = ['workflow_dispatch'];
 const env = (0, env_var_1.from)(process.env, {
     asRepoWithoutOwner: utils_1.asRepoWithoutOwner,
     asGitHubRef: utils_1.asGitHubRef
@@ -16702,13 +16701,27 @@ const env = (0, env_var_1.from)(process.env, {
 const config = {
     workspace: env.get('GITHUB_WORKSPACE').required().example('src').asString(),
     repo: env.get('GITHUB_REPOSITORY').required().asRepoWithoutOwner(),
-    owner: env.get('GITHUB_REPOSITORY_OWNER').required().example('github').asString(),
+    owner: env
+        .get('GITHUB_REPOSITORY_OWNER')
+        .required()
+        .example('github')
+        .asString(),
     ref: env.get('GITHUB_REF').required().asGitHubRef(),
     sha: env.get('GITHUB_SHA').required().asString(),
-    apiUrl: env.get('GITHUB_API_URL').default('https://api.github.com').asString(),
-    serverUrl: env.get('GITHUB_SERVER_URL').default('https://github.com').asString(),
-    event: env.get('GITHUB_EVENT_NAME').required().asEnum(githubEvents),
-    token: env.get('GITHUB_TOKEN').required().default(core.getInput('token')).asString(),
+    apiUrl: env
+        .get('GITHUB_API_URL')
+        .default('https://api.github.com')
+        .asString(),
+    serverUrl: env
+        .get('GITHUB_SERVER_URL')
+        .default('https://github.com')
+        .asString(),
+    event: env.get('GITHUB_EVENT_NAME').required().asString(),
+    token: env
+        .get('GITHUB_TOKEN')
+        .required()
+        .default(core.getInput('token'))
+        .asString()
 };
 exports["default"] = config;
 
@@ -16983,9 +16996,7 @@ exports.transformers = {
     retrieveAllReleases: utils_1.toBoolean
 };
 function transformInputs(inputs) {
-    return Object
-        .keys(exports.transformers)
-        .reduce((set, key) => Object.assign(set, {
+    return Object.keys(exports.transformers).reduce((set, key) => Object.assign(set, {
         [key]: exports.transformers[key](inputs[key] || '')
     }), {});
 }
@@ -16997,7 +17008,7 @@ const inputs = transformInputs({
     range: core.getInput('range'),
     release: core.getInput('release'),
     select: core.getInput('select'),
-    retrieveAllReleases: core.getInput('retrieveAllReleases'),
+    retrieveAllReleases: core.getInput('retrieveAllReleases')
 });
 exports["default"] = inputs;
 
@@ -17043,11 +17054,13 @@ const semverSort = {
 };
 function ensureOrderDateForRelease(release) {
     return Object.assign({}, release, {
-        orderBy: release.published_at ? new Date(release.published_at) : new Date(release.created_at)
+        orderBy: release.published_at
+            ? new Date(release.published_at)
+            : new Date(release.created_at)
     });
 }
 function sortByDate(releases, direction) {
-    return (0, lodash_orderby_1.default)(releases.map(ensureOrderDateForRelease), ['orderBy'], [direction]).map((release) => (0, lodash_omit_1.default)(release, 'orderBy'));
+    return (0, lodash_orderby_1.default)(releases.map(ensureOrderDateForRelease), ['orderBy'], [direction]).map(release => (0, lodash_omit_1.default)(release, 'orderBy'));
 }
 function sortBySemver(releases, direction) {
     return releases.sort((a, b) => semverSort[direction](a.name, b.name, true));
@@ -17071,12 +17084,12 @@ const selectionMethods = {
     }
 };
 function compareVersionToRelease({ name, tag_name: tagName }, version) {
-    return (name && (0, eq_1.default)(version, name)) ||
+    return ((name && (0, eq_1.default)(version, name)) ||
         (tagName && (0, eq_1.default)(version, tagName)) ||
-        false;
+        false);
 }
 function findVersion(releases, version) {
-    return releases.find((release) => compareVersionToRelease(release, version)) || false;
+    return (releases.find(release => compareVersionToRelease(release, version)) || false);
 }
 function selectVersion(releases, version) {
     if ((0, valid_1.default)((0, clean_1.default)(version))) {
@@ -17088,7 +17101,9 @@ function selectVersion(releases, version) {
 }
 exports.availableSelectionMethods = Object.keys(selectionMethods);
 function selectRelease(releases, select) {
-    return selectVersion(releases, select) || (selectionMethods[select] && selectionMethods[select](releases)) || false;
+    return (selectVersion(releases, select) ||
+        (selectionMethods[select] && selectionMethods[select](releases)) ||
+        false);
 }
 exports["default"] = selectRelease;
 
@@ -17127,7 +17142,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.isFalse = exports.isTrue = exports.toBoolean = exports.isEmptyString = exports.isYmlFilename = exports.readFileContent = exports.listFiles = exports.asGitHubRef = exports.asRepoWithoutOwner = void 0;
 const fs = __importStar(__nccwpck_require__(7147));
 const file = __importStar(__nccwpck_require__(9833));
-exports.asRepoWithoutOwner = ((value) => {
+const asRepoWithoutOwner = value => {
     if (!validateGitHubRepo(value)) {
         throw new Error(`Repository ${value} is not valid`);
     }
@@ -17136,7 +17151,8 @@ exports.asRepoWithoutOwner = ((value) => {
         throw new Error('must contain at least one "/"');
     }
     return split[1];
-});
+};
+exports.asRepoWithoutOwner = asRepoWithoutOwner;
 const validateGitHubRepo = (value) => {
     const matcher = new RegExp('^[^/]+/[^/]+$');
     return matcher.test(value);
@@ -17169,7 +17185,7 @@ const isPullRequestRef = (ref) => {
     const matcher = new RegExp('^refs/pull/[0-9]+');
     return matcher.test(ref);
 };
-const isTagRef = (ref) => {
+const isTagRef = ref => {
     const matcher = new RegExp('^refs/tags/');
     return matcher.test(ref);
 };
@@ -17182,26 +17198,33 @@ const readFileContent = (filename) => {
 };
 exports.readFileContent = readFileContent;
 const isYmlFilename = (filename) => {
-    const matcher = new RegExp('^.*\.(yml|yaml)$');
+    const matcher = new RegExp('^.*.(yml|yaml)$');
     return matcher.test(filename);
 };
 exports.isYmlFilename = isYmlFilename;
 const isEmptyString = (value) => {
-    return (!value || value.trim().length === 0) || false;
+    return !value || value.trim().length === 0 || false;
 };
 exports.isEmptyString = isEmptyString;
 function toBoolean(value) {
-    return typeof value === 'string' ?
-        (['true', 'yes', '1'].indexOf(value.toLowerCase().trim()) === -1 ? false : true) :
-        false;
+    return typeof value === 'string'
+        ? ['true', 'yes', '1'].indexOf(value.toLowerCase().trim()) === -1
+            ? false
+            : true
+        : false;
 }
 exports.toBoolean = toBoolean;
 const isTrue = (value) => {
-    return (typeof value === 'boolean' && value) || (typeof value === 'string' && toBoolean(value)) || false;
+    return ((typeof value === 'boolean' && value) ||
+        (typeof value === 'string' && toBoolean(value)) ||
+        false);
 };
 exports.isTrue = isTrue;
 const isFalse = (value) => {
-    return (value === false) || (typeof value === 'string' && ['false', 'no', '0'].indexOf(value.toLowerCase().trim()) !== -1) || false;
+    return (value === false ||
+        (typeof value === 'string' &&
+            ['false', 'no', '0'].indexOf(value.toLowerCase().trim()) !== -1) ||
+        false);
 };
 exports.isFalse = isFalse;
 
