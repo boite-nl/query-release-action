@@ -37,3 +37,5 @@ jobs:
           prerelease: ${{ contains(steps.current-version.outputs.version, '-rc') }}
           version: ${{ (steps.check-version.outputs.found == 'false' && steps.current-version.outputs.version) || ''}}
           tag: v${{ steps.current-version.outputs.version }}
+      - uses: vweevers/additional-tags-action@v1
+        if: steps.check-version.outputs.found == 'false' && !contains(steps.current-version.outputs.version, '-rc')
