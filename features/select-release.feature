@@ -21,8 +21,9 @@ Feature: Select a Queried Release
       """
 
     Examples:
-      | draft | prerelease | range | release | select   | description                 | matchData                              |
-      | true  | false      | false | false   | latest   | Latest Draft                | {"draft": true}                        |
-      | false | false      | false | true    | latest   | Latest Release              | {"draft": false, "prerelease": false}  |
-      | false | false      | false | true    | previous | Previous Version            | {"draft": false, "prerelease": false}  |
-      | false | true       | false | false   | v2.0.1   | Specific prerelease Version | {"prerelease": true, "name": "v2.0.1"} |
+      | draft | prerelease | range | release | select   | description                 | matchData                                               |
+      | true  | false      | false | false   | latest   | Latest Draft                | {"draft": true}                                         |
+      | false | false      | false | true    | latest   | Latest Release              | {"draft": false, "prerelease": false}                   |
+      | false | false      | false | true    | previous | Previous Version            | {"draft": false, "prerelease": false}                   |
+      | false | true       | false | false   | v2.0.1   | Specific prerelease Version | {"prerelease": true, "name": "v2.0.1"}                  |
+      | false | false      | false | true    | 2.0.0    | Specific release Version    | {"prerelease": false, "draft": false, "name": "v2.0.0"} |
