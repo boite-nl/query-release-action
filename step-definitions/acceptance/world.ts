@@ -100,6 +100,7 @@ export default class ReleaseWorld extends GithubWorld {
 
   setReleases(data: Releases): Releases {
     this.releases = data
+    this.attach(JSON.stringify(this.releases), 'application/json')
     this.mockRequest('get', `/repos/${this.owner}/${this.repo}/releases`, 200, data)
     return data
   }

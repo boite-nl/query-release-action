@@ -9,6 +9,11 @@ module.exports = {
       token: 'test-token',
       repo: 'release-query',
       owner: 'github-actions'
-    }
+    },
+    format: [
+      'summary',
+      'html:reports/cucumber.html',
+      'message:reports/cucumber.json'
+    ]
   }
 }
