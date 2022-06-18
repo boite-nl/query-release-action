@@ -1,4 +1,4 @@
-name: build-test-run
+name: Test
 
 on:
   workflow_dispatch:
