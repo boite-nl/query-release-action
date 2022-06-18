@@ -31,6 +31,7 @@ jobs:
           select: ${{ steps.current-version.outputs.version }}
       - name: Echo outputs
         run: |
+          echo "FOUND: ${{ steps.check-version.outputs.found}}"
           echo "Name: ${{ steps.check-version.outputs.name}}"
           echo "TagName: ${{ steps.check-version.outputs.tag_name}}"
       - name: PR labeling
