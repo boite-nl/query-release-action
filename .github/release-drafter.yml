@@ -31,3 +31,5 @@ exclude-contributors:
 exclude-labels:
   - 'skip-changelog'
   - 'dependencies'
+  - 'release'
+  - 'prerelease'
