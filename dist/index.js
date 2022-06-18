@@ -16976,16 +16976,28 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.transformInputs = exports.transformers = void 0;
 const core = __importStar(__nccwpck_require__(2186));
+const valid_1 = __importDefault(__nccwpck_require__(9601));
+const clean_1 = __importDefault(__nccwpck_require__(8848));
 const select_release_1 = __nccwpck_require__(1394);
 const utils_1 = __nccwpck_require__(1314);
-function toSelectTypes(value) {
+function isVersion(value) {
+    return (0, valid_1.default)((0, clean_1.default)(value));
+}
+function getSelectTypeVersion(value) {
+    return (isVersion(value) && (0, clean_1.default)(value)) || false;
+}
+function getSelectType(value) {
     const cleanupValue = value.toLowerCase().trim();
-    return select_release_1.availableSelectionMethods.indexOf(cleanupValue) === -1 ?
-        false :
-        cleanupValue;
+    return select_release_1.availableSelectionMethods.indexOf(cleanupValue) === -1 ? false : cleanupValue;
+}
+function toSelectTypes(value) {
+    return getSelectType(value) || getSelectTypeVersion(value);
 }
 exports.transformers = {
     draft: utils_1.toBoolean,
@@ -17061,7 +17073,7 @@ function ensureOrderDateForRelease(release) {
     });
 }
 function sortByDate(releases, direction) {
-    return (0, lodash_orderby_1.default)(releases.map(ensureOrderDateForRelease), ['orderBy'], [direction]).map(release => (0, lodash_omit_1.default)(release, 'orderBy'));
+    return (0, lodash_orderby_1.default)(releases.map(ensureOrderDateForRelease), ['orderBy'], [direction]).map((release) => (0, lodash_omit_1.default)(release, 'orderBy'));
 }
 function sortBySemver(releases, direction) {
     return releases.sort((a, b) => semverSort[direction](a.name, b.name, true));
@@ -17090,7 +17102,7 @@ function compareVersionToRelease({ name, tag_name: tagName }, version) {
         false);
 }
 function findVersion(releases, version) {
-    return (releases.find(release => compareVersionToRelease(release, version)) || false);
+    return (releases.find((release) => compareVersionToRelease(release, version)) || false);
 }
 function selectVersion(releases, version) {
     if ((0, valid_1.default)((0, clean_1.default)(version))) {

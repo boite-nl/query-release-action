@@ -78,7 +78,7 @@ on:
         type: string
       environment:
         description: The environment to which to release
-        defualt: production
+        default: production
         required: false
         type: string
 

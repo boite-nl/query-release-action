@@ -34,7 +34,7 @@ function getSelectType(value: string) {
 }
 
 function toSelectTypes(value: string): SelectRelease | false {
-  return getSelectTypeVersion(value) || getSelectType(value)
+  return getSelectType(value) || getSelectTypeVersion(value)
 }
 
 export const transformers: InputTransform = {
