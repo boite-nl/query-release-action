@@ -63,7 +63,7 @@
     "pack": "tsc --noEmit && ncc build src/index.ts --out lib/ --license license -s --no-source-map-register",
     "snippits:acceptance": "npx cucumber-js --config cucumber-config/acceptance.js  --dry-run --format-options \"{\\\"snippetInterface\\\": \\\"async-await\\\"}\" --format snippets --publish-quiet",
     "test": "npm run test:acceptance",
-    "test:acceptance": "npx cucumber-js --config cucumber-config/acceptance.js",
+    "test:acceptance": "mkdir -p reports && npx cucumber-js --config cucumber-config/acceptance.js",
     "test:coverage": "npx nyc npm test",
     "preversion": "npm test && rm -rf ./dist/* && touch ./dist/.gitkeep",
     "version": "npm run build && action-docs --toc-level 3 --update-readme --no-banner && doctoc README.md && git add -A dist README.md"
