@@ -4,11 +4,9 @@ _extends: .github
 name-template: "v$RESOLVED_VERSION"
 tag-template: "v$RESOLVED_VERSION"
 change-template: |
-  - $TITLE (#$NUMBER)
+  - $TITLE (#$NUMBER) @$AUTHOR
 
 template: |
-  ## Changes
-
   $CHANGES
 
   **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
