@@ -43,6 +43,8 @@ labels:
   # Description labels (PR)
   - name: maintenance
     color: "8991fa"
+  - name: skip-changelog
+    color: 7d94a3
 
   # Priority labels (issues)
   - name: "prio-critical"

@@ -31,5 +31,5 @@ jobs:
         with:
           publish: ${{ steps.check-version.outputs.found == 'false' }}
           prerelease: ${{ contains(steps.current-version.outputs.version, '-rc') }}
-          version: ${{ steps.current-version.outputs.version }}
+          version: ${{ (steps.check-version.outputs.found == 'false' && steps.current-version.outputs.version) || ''}}
           tag: v${{ steps.current-version.outputs.version }}
