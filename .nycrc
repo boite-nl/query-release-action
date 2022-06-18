@@ -4,5 +4,9 @@
   "all": true,
   "include": [
     "src/**/*.ts"
-  ]
+  ],
+  "reporter": [
+    "text-summary"
+  ],
+  "report-dir": "./reports/coverage"
 }

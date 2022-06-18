@@ -16,6 +16,10 @@ jobs:
         id: current-version
         run: |
           echo "::set-output name=version::$(npm pkg get version | xargs)"
+      - run: npm install
+      - run: npm run build
+      - name: test
+        run: npm run test:coverage
       - uses: ./
         name: Check if version "${{ steps.current-version.outputs.version }}" is released
         id: check-version
@@ -33,3 +37,17 @@ jobs:
           prerelease: ${{ contains(steps.current-version.outputs.version, '-rc') }}
           version: ${{ (steps.check-version.outputs.found == 'false' && steps.current-version.outputs.version) || ''}}
           tag: v${{ steps.current-version.outputs.version }}
+      - uses: NBTX/upload-release-assets@v1
+        if: steps.check-version.outputs.found == 'false'
+        name: Upload Reports to Release
+        id: upload-reports
+        with:
+          upload_url: ${{ steps.release.outputs.upload_url}}
+          targets: reports/cucumber.html
+      - uses: NBTX/upload-release-assets@v1
+        if: steps.check-version.outputs.found == 'false'
+        name: Upload Library to Release
+        id: upload-lib
+        with:
+          upload_url: ${{ steps.release.outputs.upload_url}}
+          targets: lib/*

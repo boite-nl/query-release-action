@@ -1,5 +1,5 @@
 name: 'Query Github Releases'
-description: 'Query Github Releases'
+description: 'Query Github releases and retrieve information about this release which can be used in other actions'
 author: Boite Witte <info@boite.nl>
 
 runs:
