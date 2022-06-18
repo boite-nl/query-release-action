@@ -13,7 +13,8 @@ module.exports = {
     format: [
       'summary',
       'html:reports/cucumber.html',
-      'message:reports/cucumber.json'
+      'message:reports/cucumber-messages.json',
+      'json:reports/cucumber-report.json'
     ]
   }
 }

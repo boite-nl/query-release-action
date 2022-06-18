@@ -32,6 +32,10 @@ jobs:
         id: run_action
         with:
           draft: true
+      - uses: deblockt/cucumber-report-annotations-action@v1.9
+        with:
+          access-token: ${{ secrets.GITHUB_TOKEN }}
+          path: "**/cucumber-report.json"
 
       - name: log-action-output
         run: echo ${{steps.run_action.outputs.gh_output}}

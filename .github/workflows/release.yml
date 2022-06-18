@@ -43,7 +43,7 @@ jobs:
         id: upload-reports
         with:
           upload_url: ${{ steps.release.outputs.upload_url}}
-          targets: reports/*
+          targets: reports/cucumber.html
       - uses: NBTX/upload-release-assets@v1
         if: steps.check-version.outputs.found == 'false'
         name: Upload Library to Release
