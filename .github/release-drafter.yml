@@ -13,9 +13,6 @@ template: |
 
   **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
 
-  ## Contributors
-  $CONTRIBUTORS
-
 categories:
   - title: "🚀 Features"
     labels:
@@ -29,3 +26,10 @@ categories:
   - title: "📖 Documentation"
     labels:
       - documentation
+
+exclude-contributors:
+  - 'dependabot'
+
+exclude-labels:
+  - 'skip-changelog'
+  - 'dependencies'
