@@ -32,6 +32,8 @@ inputs:
     default: latest
 
 outputs:
+  found:
+    description: A release is found
   id:
     description: The Release ID
   name:

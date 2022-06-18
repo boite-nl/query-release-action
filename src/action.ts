@@ -21,6 +21,7 @@ debug(new Date().toTimeString())
 
 run()
   .then((release: Release | false) => {
+    setOutput('found', release ? 'true' : 'false')
     if (release) {
       setOutput('id', release.id)
       setOutput('name', release.name)
