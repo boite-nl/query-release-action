@@ -38,8 +38,16 @@ jobs:
           version: ${{ (steps.check-version.outputs.found == 'false' && steps.current-version.outputs.version) || ''}}
           tag: v${{ steps.current-version.outputs.version }}
       - uses: NBTX/upload-release-assets@v1
+        if: steps.check-version.outputs.found == 'false'
         name: Upload Reports to Release
         id: upload-reports
         with:
           upload_url: ${{ steps.release.outputs.upload_url}}
           targets: reports/*
+      - uses: NBTX/upload-release-assets@v1
+        if: steps.check-version.outputs.found == 'false'
+        name: Upload Library to Release
+        id: upload-lib
+        with:
+          upload_url: ${{ steps.release.outputs.upload_url}}
+          targets: lib/*
