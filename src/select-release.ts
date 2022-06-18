@@ -29,7 +29,7 @@ function sortByDate(releases: Releases, direction: OrderByDirection): Releases {
     releases.map(ensureOrderDateForRelease),
     ['orderBy'],
     [direction]
-  ).map(release => omit(release, 'orderBy'))
+  ).map((release) => omit(release, 'orderBy'))
 }
 
 function sortBySemver(releases, direction: OrderByDirection): Releases {
@@ -72,7 +72,7 @@ function compareVersionToRelease(
 
 function findVersion(releases: Releases, version: string): Release | false {
   return (
-    releases.find(release => compareVersionToRelease(release, version)) || false
+    releases.find((release) => compareVersionToRelease(release, version)) || false
   )
 }
 
@@ -84,7 +84,7 @@ function selectVersion(releases: Releases, version: string): Release | false {
   }
 }
 
-export type SelectRelease = keyof typeof selectionMethods
+export type SelectRelease = keyof typeof selectionMethods | string
 export const availableSelectionMethods = Object.keys(selectionMethods)
 
 export default function selectRelease(
