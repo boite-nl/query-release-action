@@ -32,4 +32,4 @@ jobs:
           publish: ${{ steps.check-version.outputs.found == 'false' }}
           prerelease: ${{ contains(steps.current-version.outputs.version, '-rc') }}
           version: ${{ steps.current-version.outputs.version }}
-          tag: ${{ steps.current-version.outputs.version }}
+          tag: v${{ steps.current-version.outputs.version }}
