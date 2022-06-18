@@ -16642,6 +16642,7 @@ const run = async () => {
 (0, core_1.debug)(new Date().toTimeString());
 run()
     .then((release) => {
+    (0, core_1.setOutput)('found', release ? 'true' : 'false');
     if (release) {
         (0, core_1.setOutput)('id', release.id);
         (0, core_1.setOutput)('name', release.name);

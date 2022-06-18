@@ -24,11 +24,12 @@ Github Action to Query Github releases and retrieve information about this relea
 | parameter | description | required | default |
 | - | - | - | - |
 | token | Token for the repository. Can be passed in using `{{ secrets.GITHUB_TOKEN }}`. | `false` | ${{ github.token }} |
-| select | Which release do you want to retrieve? (latest, previous, oldest, max, min, specific release) | `false` | latest |
-| prerelease | Get Prerelease | `false` | false |
 | draft | Get Draft Release | `false` | false |
 | exclude-draft | Exclude Draft Releases | `false` |  |
+| prerelease | Get Prerelease | `false` | false |
 | range | Get Semver Versions from within a specific Range | `false` |  |
+| release | Get Release | `false` | false |
+| select | Which release do you want to retrieve? (latest, previous, oldest, max, min, specific release) | `false` | latest |
 
 
 
@@ -41,6 +42,7 @@ Github Action to Query Github releases and retrieve information about this relea
 
 | parameter | description |
 | - | - |
+| found | A release is found |
 | id | The Release ID |
 | name | The name for the release |
 | tag_name | The tag name for the release |

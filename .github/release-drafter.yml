@@ -1,2 +1,31 @@
 # Configuration for Release Drafter: https://github.com/toolmantim/release-drafter
 _extends: .github
+
+name-template: "v$RESOLVED_VERSION"
+tag-template: "v$RESOLVED_VERSION"
+change-template: |
+  - $TITLE (#$NUMBER)
+
+template: |
+  ## Changes
+
+  $CHANGES
+
+  **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
+
+  ## Contributors
+  $CONTRIBUTORS
+
+categories:
+  - title: "🚀 Features"
+    labels:
+      - enhancement
+  - title: "🧷 Fixes"
+    labels:
+      - bug
+  - title: "🧰 Maintenance"
+    labels:
+      - maintenance
+  - title: "📖 Documentation"
+    labels:
+      - documentation
