@@ -16696,28 +16696,19 @@ const env_var_1 = __nccwpck_require__(9459);
 const core = __importStar(__nccwpck_require__(2186));
 const utils_1 = __nccwpck_require__(1314);
 const env = (0, env_var_1.from)(process.env, {
-    asRepoWithoutOwner: utils_1.asRepoWithoutOwner,
-    asGitHubRef: utils_1.asGitHubRef
+    asRepoWithoutOwner: utils_1.asRepoWithoutOwner
 });
 const config = {
-    workspace: env.get('GITHUB_WORKSPACE').required().example('src').asString(),
     repo: env.get('GITHUB_REPOSITORY').required().asRepoWithoutOwner(),
     owner: env
         .get('GITHUB_REPOSITORY_OWNER')
         .required()
         .example('github')
         .asString(),
-    ref: env.get('GITHUB_REF').required().asGitHubRef(),
-    sha: env.get('GITHUB_SHA').required().asString(),
     apiUrl: env
         .get('GITHUB_API_URL')
         .default('https://api.github.com')
         .asString(),
-    serverUrl: env
-        .get('GITHUB_SERVER_URL')
-        .default('https://github.com')
-        .asString(),
-    event: env.get('GITHUB_EVENT_NAME').required().asString(),
     token: env
         .get('GITHUB_TOKEN')
         .required()
@@ -17152,7 +17143,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.isFalse = exports.isTrue = exports.toBoolean = exports.isEmptyString = exports.isYmlFilename = exports.readFileContent = exports.listFiles = exports.asGitHubRef = exports.asRepoWithoutOwner = void 0;
+exports.isFalse = exports.isTrue = exports.toBoolean = exports.isEmptyString = exports.isYmlFilename = exports.readFileContent = exports.listFiles = exports.asRepoWithoutOwner = void 0;
 const fs = __importStar(__nccwpck_require__(7147));
 const file = __importStar(__nccwpck_require__(9833));
 const asRepoWithoutOwner = value => {
@@ -17169,38 +17160,6 @@ exports.asRepoWithoutOwner = asRepoWithoutOwner;
 const validateGitHubRepo = (value) => {
     const matcher = new RegExp('^[^/]+/[^/]+$');
     return matcher.test(value);
-};
-const asGitHubRef = (ref) => {
-    if (!ref) {
-        throw new Error('GITHUB_REF not set');
-    }
-    else {
-        if (isBranchRef(ref)) {
-            return ref;
-        }
-        else if (isPullRequestRef(ref)) {
-            return ref;
-        }
-        else if (isTagRef(ref)) {
-            return ref;
-        }
-        else {
-            throw new Error('must be a valid github ref');
-        }
-    }
-};
-exports.asGitHubRef = asGitHubRef;
-const isBranchRef = (ref) => {
-    const matcher = new RegExp('^refs/heads/');
-    return matcher.test(ref);
-};
-const isPullRequestRef = (ref) => {
-    const matcher = new RegExp('^refs/pull/[0-9]+');
-    return matcher.test(ref);
-};
-const isTagRef = ref => {
-    const matcher = new RegExp('^refs/tags/');
-    return matcher.test(ref);
 };
 const listFiles = (rootDir) => {
     return file.walkthrough(rootDir);
