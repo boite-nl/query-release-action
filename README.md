@@ -9,14 +9,16 @@ Github Action to Query Github releases and retrieve information about this relea
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Action](#action)
-  - [Inputs](#inputs)
-  - [Environment Variables](#environment-variables)
-  - [Outputs](#outputs)
-  - [Runs](#runs)
-- [Examples](#examples)
-  - [Deploy specific release to environment](#deploy-specific-release-to-environment)
-  - [Rollback action](#rollback-action)
+- [Query Github Releases Action](#query-github-releases-action)
+  - [Contents](#contents)
+  - [Action](#action)
+    - [Inputs](#inputs)
+    - [Environment Variables](#environment-variables)
+    - [Outputs](#outputs)
+    - [Runs](#runs)
+  - [Examples](#examples)
+    - [Deploy specific release to environment](#deploy-specific-release-to-environment)
+    - [Rollback action](#rollback-action)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -24,15 +26,15 @@ Github Action to Query Github releases and retrieve information about this relea
 <!-- action-docs-inputs -->
 ### Inputs
 
-| parameter | description | required | default |
-| - | - | - | - |
-| token | Token for the repository. Can be passed in using `{{ secrets.GITHUB_TOKEN }}`. | `false` | ${{ github.token }} |
-| draft | Get Draft Release | `false` | false |
-| exclude-draft | Exclude Draft Releases | `false` |  |
-| prerelease | Get Prerelease | `false` | false |
-| range | Get Semver Versions from within a specific Range | `false` |  |
-| release | Get Release | `false` | false |
-| select | Which release do you want to retrieve? (latest, previous, oldest, max, min, specific release) | `false` | latest |
+| parameter     | description                                                                                   | required | default             |
+| ------------- | --------------------------------------------------------------------------------------------- | -------- | ------------------- |
+| token         | Token for the repository. Can be passed in using `{{ secrets.GITHUB_TOKEN }}`.                | `false`  | ${{ github.token }} |
+| draft         | Get Draft Release                                                                             | `false`  | false               |
+| exclude-draft | Exclude Draft Releases                                                                        | `false`  |                     |
+| prerelease    | Get Prerelease                                                                                | `false`  | false               |
+| range         | Get Semver Versions from within a specific Range                                              | `false`  |                     |
+| release       | Get Release                                                                                   | `false`  | false               |
+| select        | Which release do you want to retrieve? (latest, previous, oldest, max, min, specific release) | `false`  | latest              |
 
 
 
@@ -40,17 +42,24 @@ Github Action to Query Github releases and retrieve information about this relea
 
 ### Environment Variables
 
+| ENV VAR                   | Description                                                    | Required | Default                  |
+| ------------------------- | -------------------------------------------------------------- | -------- | ------------------------ |
+| `GITHUB_REPOSITORY`       | The Repository name                                            | `true`   | -                        |
+| `GITHUB_REPOSITORY_OWNER` | The repository owner's name                                    | `true`   | -                        |
+| `GITHUB_API_URL`          | The API URL                                                    | `false`  | `https://api.github.com` |
+| `GITHUB_TOKEN`            | Token for executing the action, can also be set through inputs | `true`   | `${{ inputs.token }}`    |
+
 <!-- action-docs-outputs -->
 ### Outputs
 
-| parameter | description |
-| - | - |
-| found | A release is found |
-| id | The Release ID |
-| name | The name for the release |
-| tag_name | The tag name for the release |
-| body | Description of the Release |
-| url | The URL of the Release |
+| parameter | description                  |
+| --------- | ---------------------------- |
+| found     | A release is found           |
+| id        | The Release ID               |
+| name      | The name for the release     |
+| tag_name  | The tag name for the release |
+| body      | Description of the Release   |
+| url       | The URL of the Release       |
 
 
 
