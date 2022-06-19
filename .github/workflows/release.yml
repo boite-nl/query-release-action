@@ -8,6 +8,11 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    outputs:
+      is-released: ${{ steps.check-version.outputs.found == 'false' }}
+      is-prerelease: ${{ contains(steps.current-version.outputs.version, '-rc') }}
+      release: ${{ steps.release.outputs.name }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -37,3 +42,11 @@ jobs:
           prerelease: ${{ contains(steps.current-version.outputs.version, '-rc') }}
           version: ${{ (steps.check-version.outputs.found == 'false' && steps.current-version.outputs.version) || ''}}
           tag: v${{ steps.current-version.outputs.version }}
+  tagging:
+    runs-on: ubuntu-latest
+    needs: [release]
+    if: needs.release.outputs.is-released && !needs.release.outputs.is-prerelease
+    steps:
+      - uses: actions/checkout@v3
+      - uses: vweevers/additional-tags-action@v1
+
