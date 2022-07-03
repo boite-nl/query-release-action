@@ -1,7 +1,7 @@
 import {from} from 'env-var'
 import * as core from '@actions/core'
 
-import { asRepoWithoutOwner} from './utils'
+import { asRepoWithoutOwner } from './utils'
 
 // const githubEvents = ['workflow_dispatch']
 

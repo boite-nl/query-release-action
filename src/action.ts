@@ -35,7 +35,7 @@ run()
 
     debug(new Date().toTimeString())
   })
-  .catch(error => {
+  .catch((error) => {
     setFailed(error.message)
     debug(new Date().toTimeString())
   })

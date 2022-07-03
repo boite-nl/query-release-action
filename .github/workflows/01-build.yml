@@ -31,7 +31,7 @@ jobs:
         uses: ./
         id: run_action
         with:
-          draft: true
+          exclude-draft: true
       - uses: deblockt/cucumber-report-annotations-action@v1.9
         with:
           access-token: ${{ secrets.GITHUB_TOKEN }}

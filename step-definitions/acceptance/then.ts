@@ -33,5 +33,8 @@ const objectMatch = (actual, compare): boolean => {
 Then('I expect to find the {string} release with:', function(this: ReleaseWorld, description, matchData) {
   const match = JSON.parse(matchData)
 
+  this.log(description)
+  this.attach(JSON.stringify(this.result), 'application/json')
+
   assert.ok(objectMatch(this.result, match), `No match for ${description}`)
 })

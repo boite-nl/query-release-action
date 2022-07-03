@@ -240,6 +240,8 @@ modules.xml
 .idea/sonarlint
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,node,git,webstorm+all
+.DS_Store
+
 !dist/
 links
 lib/
