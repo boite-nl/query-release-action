@@ -33,6 +33,7 @@ jobs:
         with:
           exclude-draft: true
       - uses: deblockt/cucumber-report-annotations-action@v1.9
+        if: github.actor != 'dependabot[bot]'
         with:
           access-token: ${{ secrets.GITHUB_TOKEN }}
           path: "**/cucumber-report.json"
