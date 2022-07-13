@@ -71,7 +71,7 @@ This action is a `node16` action.
 
 <!-- action-docs-runs -->
 
-## Examples
+## Use Cases
 
 ### Deploy specific release to environment
 ```yml
