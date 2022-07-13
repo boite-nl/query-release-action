@@ -14,7 +14,7 @@ Github Action to Query Github releases and retrieve information about this relea
   - [Environment Variables](#environment-variables)
   - [Outputs](#outputs)
   - [Runs](#runs)
-- [Examples](#examples)
+- [Use Cases](#use-cases)
   - [Deploy specific release to environment](#deploy-specific-release-to-environment)
   - [Rollback action](#rollback-action)
 
