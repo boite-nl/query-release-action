@@ -69,5 +69,5 @@
     "version": "npm run build && action-docs --toc-level 3 --update-readme --no-banner && doctoc README.md && git add -A dist README.md"
   },
   "snyk": true,
-  "version": "1.0.1"
+  "version": "1.0.2"
 }
