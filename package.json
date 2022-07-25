@@ -21,7 +21,7 @@
     "@types/lodash.orderby": "4.6.7",
     "@types/node": "18.0.6",
     "@types/semver": "7.3.10",
-    "@types/sinon": "10.0.12",
+    "@types/sinon": "10.0.13",
     "@typescript-eslint/eslint-plugin": "5.30.6",
     "@typescript-eslint/parser": "5.30.6",
     "@vercel/ncc": "0.34.0",
