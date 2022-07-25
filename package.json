@@ -23,7 +23,7 @@
     "@types/semver": "7.3.10",
     "@types/sinon": "10.0.12",
     "@typescript-eslint/eslint-plugin": "5.30.6",
-    "@typescript-eslint/parser": "5.30.6",
+    "@typescript-eslint/parser": "5.30.7",
     "@vercel/ncc": "0.34.0",
     "action-docs": "1.0.4",
     "doctoc": "2.2.0",
