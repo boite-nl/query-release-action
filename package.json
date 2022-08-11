@@ -14,7 +14,7 @@
   },
   "description": "Github Action to Query a Release",
   "devDependencies": {
-    "@cucumber/cucumber": "8.5.0",
+    "@cucumber/cucumber": "8.5.1",
     "@istanbuljs/nyc-config-typescript": "1.0.2",
     "@types/lodash.difference": "4.5.7",
     "@types/lodash.omit": "4.5.7",
