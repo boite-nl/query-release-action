@@ -6,7 +6,7 @@
   "dependencies": {
     "@actions/core": "^1.9.1",
     "@actions/github": "^5.0.3",
-    "env-var": "7.1.1",
+    "env-var": "7.2.0",
     "lodash.get": "4.4.2",
     "lodash.omit": "4.5.0",
     "lodash.orderby": "4.6.0",
