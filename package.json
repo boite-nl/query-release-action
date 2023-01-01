@@ -31,7 +31,7 @@
     "eslint-config-google": "0.14.0",
     "filewtf": "1.0.0",
     "git-branch-is": "4.0.0",
-    "husky": "8.0.1",
+    "husky": "8.0.2",
     "nock": "13.2.9",
     "nyc": "15.1.0",
     "prettier": "2.7.1",
