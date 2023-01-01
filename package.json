@@ -25,7 +25,7 @@
     "@typescript-eslint/eslint-plugin": "5.45.0",
     "@typescript-eslint/parser": "5.47.0",
     "@vercel/ncc": "0.34.0",
-    "action-docs": "1.0.4",
+    "action-docs": "1.1.1",
     "doctoc": "2.2.0",
     "eslint": "8.21.0",
     "eslint-config-google": "0.14.0",
