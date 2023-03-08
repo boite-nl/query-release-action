@@ -10,7 +10,7 @@
     "lodash.get": "4.4.2",
     "lodash.omit": "4.5.0",
     "lodash.orderby": "4.6.0",
-    "semver": "7.3.7"
+    "semver": "7.3.8"
   },
   "description": "Github Action to Query a Release",
   "devDependencies": {
@@ -20,12 +20,12 @@
     "@types/lodash.omit": "4.5.7",
     "@types/lodash.orderby": "4.6.7",
     "@types/node": "18.14.2",
-    "@types/semver": "7.3.11",
+    "@types/semver": "7.3.13",
     "@types/sinon": "10.0.13",
     "@typescript-eslint/eslint-plugin": "5.54.0",
     "@typescript-eslint/parser": "5.47.0",
     "@vercel/ncc": "0.34.0",
-    "action-docs": "1.0.4",
+    "action-docs": "1.1.1",
     "doctoc": "2.2.0",
     "eslint": "8.21.0",
     "eslint-config-google": "0.14.0",
