@@ -12,6 +12,6 @@ jobs:
         with:
           fetch-depth: 2
       - name: PR labeling
-        uses: srvaroa/labeler@v0.9
+        uses: srvaroa/labeler@v1.4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

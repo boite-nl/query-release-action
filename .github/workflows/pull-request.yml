@@ -35,7 +35,7 @@ jobs:
           echo "Name: ${{ steps.check-version.outputs.name }}"
           echo "TagName: ${{ steps.check-version.outputs.tag_name }}"
       - name: PR labeling
-        uses: srvaroa/labeler@v0.9
+        uses: srvaroa/labeler@v1.4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Add Version Label
