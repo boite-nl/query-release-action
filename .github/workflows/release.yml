@@ -48,5 +48,5 @@ jobs:
     if: needs.release.outputs.is-released && !needs.release.outputs.is-prerelease
     steps:
       - uses: actions/checkout@v3
-      - uses: vweevers/additional-tags-action@v1
+      - uses: vweevers/additional-tags-action@v2
 
