@@ -33,7 +33,7 @@ jobs:
           prerelease: ${{ contains(steps.current-version.outputs.version, '-rc')}}
           release: ${{ !contains(steps.current-version.outputs.version, '-rc')}}
           select: ${{ steps.current-version.outputs.version }}
-      - uses: release-drafter/release-drafter@v5.20.0
+      - uses: release-drafter/release-drafter@v5.23.0
         id: release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
