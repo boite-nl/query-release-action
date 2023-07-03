@@ -10,7 +10,7 @@
     "lodash.get": "4.4.2",
     "lodash.omit": "4.5.0",
     "lodash.orderby": "4.6.0",
-    "semver": "7.5.1"
+    "semver": "7.5.3"
   },
   "description": "Github Action to Query a Release",
   "devDependencies": {
