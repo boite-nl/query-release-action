@@ -32,7 +32,7 @@
     "filewtf": "1.0.0",
     "git-branch-is": "4.0.0",
     "husky": "8.0.3",
-    "nock": "13.3.1",
+    "nock": "13.3.2",
     "nyc": "15.1.0",
     "prettier": "2.8.8",
     "source-map-support": "0.5.21",
