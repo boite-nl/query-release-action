@@ -22,7 +22,7 @@
     "@types/node": "20.4.5",
     "@types/semver": "7.5.0",
     "@types/sinon": "10.0.15",
-    "@typescript-eslint/eslint-plugin": "5.60.1",
+    "@typescript-eslint/eslint-plugin": "6.3.0",
     "@typescript-eslint/parser": "5.47.0",
     "@vercel/ncc": "0.36.1",
     "action-docs": "1.2.0",
