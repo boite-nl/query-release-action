@@ -21,7 +21,7 @@ jobs:
   build: # make sure we can build action
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: npm install
       - run: npm run build
       - run: npm run pack

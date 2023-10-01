@@ -14,7 +14,7 @@ jobs:
       release: ${{ steps.release.outputs.name }}
       tag_name: ${{ steps.release.outputs.tag_name }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 2
       - name: Get current release
@@ -47,6 +47,6 @@ jobs:
     needs: [release]
     if: needs.release.outputs.is-released && !needs.release.outputs.is-prerelease
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: vweevers/additional-tags-action@v2
 
