@@ -4,7 +4,7 @@
     "url": "https://github.com/boite-nl/query-release-action/issues"
   },
   "dependencies": {
-    "@actions/core": "^1.10.0",
+    "@actions/core": "^1.10.1",
     "@actions/github": "^5.1.1",
     "env-var": "7.4.1",
     "lodash.get": "4.4.2",
@@ -18,7 +18,7 @@
     "@istanbuljs/nyc-config-typescript": "1.0.2",
     "@types/lodash.difference": "4.5.7",
     "@types/lodash.omit": "4.5.7",
-    "@types/lodash.orderby": "4.6.7",
+    "@types/lodash.orderby": "4.6.9",
     "@types/node": "20.4.5",
     "@types/semver": "7.5.3",
     "@types/sinon": "10.0.16",
