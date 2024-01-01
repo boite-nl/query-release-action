@@ -12,9 +12,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: github/codeql-action/init@v2
+      - uses: github/codeql-action/init@v3
         with:
           languages: javascript # comma separated list of values from {go, python, javascript, java, cpp, csharp} (not YET ruby, sorry!)
 
-      - uses: github/codeql-action/analyze@v2
+      - uses: github/codeql-action/analyze@v3
         continue-on-error: true
