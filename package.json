@@ -17,7 +17,7 @@
     "@cucumber/cucumber": "9.3.0",
     "@istanbuljs/nyc-config-typescript": "1.0.2",
     "@types/lodash.difference": "4.5.7",
-    "@types/lodash.omit": "4.5.7",
+    "@types/lodash.omit": "4.5.9",
     "@types/lodash.orderby": "4.6.9",
     "@types/node": "20.4.5",
     "@types/semver": "7.5.3",
