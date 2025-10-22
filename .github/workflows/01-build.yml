@@ -32,7 +32,7 @@ jobs:
         id: run_action
         with:
           exclude-draft: true
-      - uses: deblockt/cucumber-report-annotations-action@v1.13
+      - uses: deblockt/cucumber-report-annotations-action@v1.16
         if: github.actor != 'dependabot[bot]'
         with:
           access-token: ${{ secrets.GITHUB_TOKEN }}
