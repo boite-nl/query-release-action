@@ -14,6 +14,15 @@ type Methods = 'get' | 'post' | 'put' | 'patch' | 'head' | 'delete' | 'options' 
 const GitHubEndpoint: string = 'https://api.github.com'
 const AuthScope: string = '/app/installations/2/access_tokens';
 
+// @actions/github calls undici's own fetch (with a proxy dispatcher), which
+// nock cannot intercept. Route it through the global fetch, which nock can.
+// `require` (not `import * as`) so we patch the module instance it shares.
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const undici = require('undici')
+const undiciFetch = undici.fetch
+const interceptableFetch = (url: any, {dispatcher, ...opts}: any = {}) =>
+  globalThis.fetch(url, opts)
+
 export class GithubWorld extends World<WorldParameters> {
   readonly token: string
   readonly repo: string
@@ -36,6 +45,7 @@ export class GithubWorld extends World<WorldParameters> {
   }
 
   before(endpoint?: string, authScope?: string) {
+    undici.fetch = interceptableFetch
     nock.disableNetConnect()
 
     this.nock = this.setup(endpoint || GitHubEndpoint)
@@ -45,6 +55,7 @@ export class GithubWorld extends World<WorldParameters> {
   after() {
     nock.cleanAll()
     nock.enableNetConnect()
+    undici.fetch = undiciFetch
     this.nock = undefined
   }
 

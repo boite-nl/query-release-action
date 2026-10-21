@@ -1,6 +1,5 @@
 import {ExtensionFn} from 'env-var'
 import * as fs from 'fs'
-import * as file from 'filewtf'
 
 /**
  * This function parses the GitHub repo owner from the repo name
@@ -27,15 +26,6 @@ export const asRepoWithoutOwner: ExtensionFn<string> = value => {
 const validateGitHubRepo = (value: string) => {
   const matcher = new RegExp('^[^/]+/[^/]+$')
   return matcher.test(value)
-}
-
-/**
- * This function lists all the items in the
- * target root directory recurrsively.
- * @param rootDir the root directory to be walked
- */
-export const listFiles = (rootDir: string) => {
-  return file.walkthrough(rootDir)
 }
 
 /**
