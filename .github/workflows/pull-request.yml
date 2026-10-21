@@ -20,7 +20,7 @@ jobs:
       - name: Get current release
         id: current-version
         run: |
-          echo "::set-output name=version::$(npm pkg get version | xargs)"
+          echo "version=$(npm pkg get version | xargs)" >> "$GITHUB_OUTPUT"
       - uses: ./
         name: Check if version "${{ steps.current-version.outputs.version }}" is released
         id: check-version
