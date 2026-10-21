@@ -43,4 +43,14 @@ outputs:
   body:
     description: Description of the Release
   url:
-    description: The URL of the Release
+    description: The API URL of the release
+  html_url:
+    description: The web page URL where the release can be viewed on GitHub
+  assets_url:
+    description: The API URL for accessing the release assets
+  upload_url:
+    description: The URL template for uploading new assets to the release
+  tarball_url:
+    description: The URL to download the source code as a tarball (.tar.gz)
+  zipball_url:
+    description: The URL to download the source code as a zipball (.zip)

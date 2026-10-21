@@ -37014,6 +37014,11 @@ run()
         (0, core_1.setOutput)('tag_name', release.tag_name);
         (0, core_1.setOutput)('body', release.body);
         (0, core_1.setOutput)('url', release.url);
+        (0, core_1.setOutput)('html_url', release.html_url);
+        (0, core_1.setOutput)('assets_url', release.assets_url);
+        (0, core_1.setOutput)('upload_url', release.upload_url);
+        (0, core_1.setOutput)('tarball_url', release.tarball_url);
+        (0, core_1.setOutput)('zipball_url', release.zipball_url);
     }
     else {
         (0, core_1.warning)('No Release Found');

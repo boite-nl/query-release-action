@@ -29,6 +29,11 @@ run()
       setOutput('tag_name', release.tag_name)
       setOutput('body', release.body)
       setOutput('url', release.url)
+      setOutput('html_url', release.html_url)
+      setOutput('assets_url', release.assets_url)
+      setOutput('upload_url', release.upload_url)
+      setOutput('tarball_url', release.tarball_url)
+      setOutput('zipball_url', release.zipball_url)
     } else {
       warning('No Release Found')
     }
